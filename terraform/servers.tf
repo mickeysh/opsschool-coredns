@@ -67,6 +67,20 @@ resource "aws_security_group" "coredns_sg" {
     protocol    = "UDP"
     cidr_blocks = ["0.0.0.0/0"]
   }
+
+  ingress {
+    from_port   = 1053
+    to_port     = 1053
+    protocol    = "UDP"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port   = 1053
+    to_port     = 1053
+    protocol    = "TCP"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 }
 
 # Allocate the EC2 monitoring instance
