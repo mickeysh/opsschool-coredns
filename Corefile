@@ -1,0 +1,13 @@
+opsschool.internal {
+    root /etc/coredns/zones    
+    file db.opsschool.example
+    errors
+    log
+}
+
+. {
+    forward . 8.8.8.8 8.8.4.4
+    cache
+    errors
+    log
+}

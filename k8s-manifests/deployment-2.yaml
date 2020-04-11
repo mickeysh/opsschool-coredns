@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: headless
+  namespace: default
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: headless
+  template:
+    metadata:
+      labels:
+        app: headless
+    spec:
+      hostname: myhost
+      subdomain: headless
+      containers:
+      - image: nginx
+        name: nginx
+        ports:
+        - containerPort: 80
+          name: http
+          protocol: TCP
