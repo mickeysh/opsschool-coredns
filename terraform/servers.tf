@@ -108,18 +108,22 @@ resource "aws_instance" "core_dns" {
   }
 
   provisioner "file" {
-    source      = "script/docker_install.sh"
-    destination = "/tmp/docker_install.sh"
+    source      = "script/install_coredns.sh"
+    destination = "/tmp/install_coredns.sh"
   }
 
   provisioner "remote-exec" {
     inline = [
-      "chmod +x /tmp/docker_install.sh",
-      "/tmp/docker_install.sh",
+      "chmod +x /tmp/install_coredns.sh",
+      "/tmp/install_coredns.sh",
     ]
   }
 }
 
 output "servers_public_ip" {
   value = join(",", aws_instance.core_dns.*.public_ip)
+}
+
+output "servers_private_ip" {
+  value = join(",", aws_instance.core_dns.*.private_ip)
 }

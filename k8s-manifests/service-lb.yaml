@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata: 
+  name: service-cluster
+  namespace: default
+spec:
+  selector:
+    app: headless
+  type: LoadBalancer
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
